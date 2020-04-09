@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>SecuriG - Üyeler</title>
+    <title>SecuriG - Ürünler</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
@@ -20,7 +20,13 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/datatables.css" />
 </head>
+<style>
 
+.buttons{
+    border-radius:20px;
+    border-color:red;
+}
+</style>
 <body>
     <!--################### Header Starts Here #########################--->
     
@@ -84,7 +90,10 @@ else
     </header>
         
     <div class="slider-detail" style="margin-left:20%">
-     
+
+
+    <h1 style="margin-top:30px; margin-bottom:30px">Ürünler</h1>
+    <div class="row">
     <?php
 
 $baglanti = new mysqli("localhost", "root", "", "esat");
@@ -93,52 +102,45 @@ $sql = "SELECT * FROM urunler";
 $sorgu = mysqli_query($baglanti, $sql);
 while ($sonuc = mysqli_fetch_assoc($sorgu))
 {
-
-    echo ' <table id="example" class="" cellspacing="0" width="100%">';
-    echo ' <thead>';
-    echo '<tr>';
-
-    echo '<th>';
-    echo $sonuc["UrunAdi"];
-    echo '</th>';
-
-    echo '<th>';
-    echo $sonuc["UrunAciklama"];
-    echo '</th>';
-
-    echo '<th>';
-    echo $sonuc["UrunFiyat"];
-    echo '</th>';
-
-    echo '<th>';
-    echo $sonuc["UrunDetay"];
-    echo '</th>';
-
-    echo '<th>';
-    echo $sonuc["img"];
-    echo '</th>';
-
-    echo '</tr>';
-
-    echo '</thead>';
-
-    echo '</table>';
-}
-?>
-
-    </div>
-    
-
-    
-      <!--################### Services Starts Here ####################--->
-      <div class="our-services container-fluid">
-        <div class="container">
+    echo '
+    <div class="col-md-6">
+      
+    <div class="single-product-item product-horizontal">
+      <a href="" >
+      <img src="'.$sonuc['image'].'.jpg" width="250" height="250" border="0" alt="" class="product-thumbnail">
+      </a>
+    <div class="product-summary">
+      <div class="d-flex align-items-center mb-10">
+        <span class="price">
          
+        <div class="star-rating" role="img" aria-label="">
+          <span style="width:100%"> <strong class="rating"></strong></span>
+          
         </div>
+      </div>
+      <h4 class="product-title">
+          <a href="#">'.$sonuc["UrunAdi"].'</a>
+      </h4>
+      <h6 class="product-title">
+          <a href="#">Açıklama : '.$sonuc["UrunAciklama"].'</a>
+      </h6>
+      <span class="woocommerce-Price-amount amount">
+      <span class="woocommerce-Price-currencySymbol"></span>Fiyat : '.$sonuc["UrunFiyat"].'₺</span>
+  </span>
+<br>
+      <div class="buttons" style="margin-top:10px;">
+        <a style="color:red;" href="detay.php?islem=sil&ID='.$sonuc['ID'].'" data-quantity="1" class="button" rel="nofollow">Sepete Ekle</a>
+    
+      </div>
     </div>
-    
-    
-         	<div class="container">
+  </div><br><br><br>
+ </div>';
+}
+
+?> 
+
+    </div>
+  <div class="container">
          		
         		</div>
          	</div>
@@ -152,6 +154,16 @@ while ($sonuc = mysqli_fetch_assoc($sorgu))
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 foot-about">
+
+               
+
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+                
+                    </footer>
                         
 </body>
 <script src="assets/js/jquery-3.2.1.min.js"></script>
